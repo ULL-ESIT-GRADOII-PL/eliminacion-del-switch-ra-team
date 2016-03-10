@@ -1,143 +1,6 @@
 (function(exports) {
     "use strict";
 
-    function Medida(val, tipo) {
-        /* tipo es opcional. Debería admitir  new Medida("45.2 Km") */
-
-        if (val && !tipo) {
-          var regexp = /([+-]?\d+(?:\.\d+)?(?:e[+-]?\d+)?)\s*([cfkmi])/i;
-
-          var m = val.match(regexp);
-
-          this.valor = m[1];
-          this.tipo = m[2];
-
-        }
-
-        else if (val && tipo){
-            this.valor = val;
-            this.tipo = tipo;
-        }
-        /* tipo es opcional. Debería admitir  new Medida("45.2 Km") */
-        /* ademas de new Medida(45.2, "Km") */
-    }
-
-    Medida.prototype.constructor = Medida;
-
-    Medida.prototype.getValue = function() {
-        return this.valor;
-    }
-
-    Medida.prototype.getType = function() {
-        return this.type;
-    }
-
-    function convert (value, input, output) {
-
-    }
-
-    Medida.prototype.convert = convert
-
-
-
-
-
-    function Temperatura(valor, tipo) {
-        Medida.call(this, valor, tipo);
-    }
-
-    // There we set the inheritance
-    Temperatura.prototype = new Medida();
-    Temperatura.prototype.constructor = Temperatura;
-
-
-    function Celsius(valor) {
-        Temperatura.call(this, valor, 'Celsius');
-    }
-
-    // There we set the inheritance
-    Celsius.prototype = new Temperatura();
-    Celsius.prototype.constructor = Celsius;
-
-    Celsius.prototype.toFarenheit = function() {
-        return (this.valor * 1.8 + 32);
-    }
-
-    Celsius.prototype.toKelvin = function() {
-        return (this.valor + 273.15);
-    }
-
-    Celsius.prototype.to = function(outputType) {
-        switch (outputType.toLowerCase()) {
-            case 'f':
-                return this.toFarenheit() + " Farenheit";
-            case 'k':
-                return this.toKelvin() + " Kelvin";
-            default:
-                return "Input format is incorrect, please read EXAMPLES below.";
-        }
-    }
-
-
-
-
-
-    function Farenheit(valor) {
-        Temperatura.call(this, valor, "Farenheit");
-    }
-
-    // There we set the inheritance
-    Farenheit.prototype = new Temperatura();
-    Farenheit.prototype.constructor = Farenheit;
-
-    Farenheit.prototype.toCelsius = function() {
-        return (this.valor - 32) * 5 / 9;
-    }
-
-    Farenheit.prototype.toKelvin = function() {
-        return (5 * (this.valor - 32) / 9) + 273.15;
-    }
-
-    Farenheit.prototype.to = function(outputType) {
-        switch (outputType.toLowerCase()) {
-            case 'c':
-                return this.toCelsius() + " Celsius";
-            case 'k':
-                return this.toKelvin() + " Kelvin";
-            default:
-                return "Input format is incorrect, please read EXAMPLES below.";
-        }
-    }
-
-
-    function Kelvin(valor) {
-        Temperatura.call(this, valor, "Kelvin");
-    }
-
-    // There we set the inheritance
-    Kelvin.prototype = new Temperatura();
-    Kelvin.prototype.constructor = Kelvin;
-
-    Kelvin.prototype.toCelsius = function() {
-        return (this.valor - 273.15);
-    }
-
-    Kelvin.prototype.toFarenheit = function() {
-        return ((this.valor * 1.8) - 459.67);
-    }
-
-    Kelvin.prototype.to = function(outputType) {
-        switch (outputType.toLowerCase()) {
-            case 'c':
-                return this.toCelsius() + " Celsius";
-            case 'f':
-                return this.toFarenheit() + " Farenheit";
-            default:
-                return "Input format is incorrect, please read EXAMPLES below.";
-        }
-    }
-
-
 
     function Longitud(valor, tipo) {
         Medida.call(this, valor, tipo);
@@ -188,8 +51,6 @@
     }
 
 
-    exports.Temperatura = Temperatura;
-    exports.Celsius = Celsius;
     exports.Farenheit = Farenheit;
     exports.Kelvin = Kelvin;
 
@@ -197,9 +58,9 @@
     exports.Meters = Meters;
     exports.Inches = Inches;
 
-    Conversor['c'] = Celsius.prototype.to
-    Conversor['f'] = Farenheit.prototype.to
-    Conversor['k'] = Kelvin.prototype.to
+  //  Conversor['c'] = Celsius.prototype.to
+  //  Conversor['f'] = Farenheit.prototype.to
+  //  Conversor['k'] = Kelvin.prototype.to
 
     exports.convert = function() {
         var valor = document.getElementById('convert').value,
@@ -211,7 +72,7 @@
 
             valor = XRegExp.exec(valor, expresion);
 
-        /*if (valor) {
+        if (valor) {
             switch (valor.input.toLowerCase()) {
                 case 'c': // CELSIUS TO X
                     var celsius = new Celsius(parseFloat(valor.num));
@@ -238,6 +99,6 @@
             }
         } else
             elemento.innerHTML = "Input format is incorrect, please read EXAMPLES below.";
-        */
+
     };
 })(this);
