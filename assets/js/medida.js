@@ -1,6 +1,6 @@
 
 (function(exports) {
-
+  "use strict";
   const REGEX = XRegExp('(?<num>      [-+]?[0-9]+(.[0-9]+)?[ ]*(?:e[+-]?[ ]*[0-9]+)?)[ ]*    # number       \n' +
                         '(?<input>    [a-z])[ ]*                                           # inputTemp    \n' +
                         '(?<to>       (?:to)?)[ ]*                                           # to           \n' +
@@ -9,7 +9,9 @@
 
   var converters = {}
   converters['k'] = function (value, type) {
-    return Kelvin.from (value, type);
+    //var pepe = new Kelvin (100);
+    return new Kelvin (value,type);
+    //return Kelvin.from (value, type);
   }
   converters['c'] = function (value, type) {
     return Celsius.from (value, type);
@@ -20,6 +22,7 @@
   converters['m'] = function (value, type) {
     return Meters.from (value, type);
   }
+
 
 
 
@@ -62,7 +65,7 @@
 
   function convertir (value) {
     value = evaluate(value);   // Evaluate value using the regular expression
-    var result = converters[value.output](value.num, value.input);
+    var result = converters[value.output](value.num, value.input).value;
     if (!result)
       return -1;
     else
