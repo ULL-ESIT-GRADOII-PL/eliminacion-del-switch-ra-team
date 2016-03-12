@@ -1,5 +1,14 @@
 
 (function(exports) {
+
+      converters = {}
+      converters['c'] = function (value) {
+        return new Celsius (value - 273.15);
+      }
+      converters['f'] = function (value) {
+        return new Farenheit ((value * 1.8) - 459.67);
+      }
+
       function Kelvin(valor) {
           Temperatura.call(this, valor, "Kelvin");
       }
@@ -12,7 +21,7 @@
       Kelvin.prototype.toFarenheit = function() {
           return ((this.valor * 1.8) - 459.67);
       }
-      Kelvin.prototype.to = function(outputType) {
+/*      Kelvin.prototype.to = function(outputType) {
           switch (outputType.toLowerCase()) {
               case 'c':
                   return this.toCelsius() + " Celsius";
@@ -22,11 +31,10 @@
                   return "Input format is incorrect, please read EXAMPLES below.";
           }
       }
-
-//      Kelvin.prototype.from = function (inputType, value) {
-
-//          val + 273.15;
-//      }
-
+*/
+      Kelvin.prototype.from = function (inputType, value) {
+        return converters[inputType](value);
+      }
       exports.Kelvin = Kelvin
+    
 })(this);

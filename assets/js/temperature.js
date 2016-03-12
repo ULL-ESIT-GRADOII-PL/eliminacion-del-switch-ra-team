@@ -22,6 +22,5 @@
     Temperatura.prototype.constructor = Temperatura;
 
     exports.Temperatura = Temperatura;
-    exports.Temperatura.converters = converters;
 
 })(this);

@@ -17,6 +17,11 @@
   converters['f'] = function (value, type) {
     return Farenheit.from (value, type);
   }
+  converters['m'] = function (value, type) {
+    return Meters.from (value, type);
+  }
+
+
 
   function Medida(val, tipo) {
       /* tipo es opcional. Debería admitir  new Medida("45.2 Km") */
@@ -57,8 +62,11 @@
 
   function convertir (value) {
     value = evaluate(value);   // Evaluate value using the regular expression
-    converters[value.output] =
-    document.getElementById('converted').innerHTML = value;
+    var result = converters[value.output](value.num, value.input);
+    if (!result)
+      return -1;
+    else
+      return result;
   }
 
   exports.Medida = Medida;
