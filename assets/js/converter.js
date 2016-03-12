@@ -1,77 +1,12 @@
 (function(exports) {
     "use strict";
 
-
-    function Longitud(valor, tipo) {
-        Medida.call(this, valor, tipo);
-    }
-
-    // There we set the inheritance
-    Longitud.prototype = new Medida("34c");
-    Longitud.prototype.constructor = Longitud;
-
-    function Meters(valor) {
-        Longitud.call(this, valor, "Meters");
-    }
-
-    Meters.prototype = new Longitud();
-    Meters.prototype.constructor = Meters;
-
-    Meters.prototype.toInches = function() {
-        return (this.valor * 39.3701);
-    }
-
-    Meters.prototype.to = function(outputType) {
-        switch (outputType.toLowerCase()) {
-            case 'i':
-                return this.toInches() + " Inches";
-            default:
-                return "Input format is incorrect, please read EXAMPLES below.";
-        }
-    }
-
-    function Inches(valor) {
-        Longitud.call(this, valor, "Inches");
-    }
-
-    Inches.prototype = new Longitud();
-    Inches.prototype.constructor = Inches;
-
-    Inches.prototype.toMeters = function() {
-        return (this.valor / 39.3701);
-    }
-
-    Inches.prototype.to = function(outputType) {
-        switch (outputType.toLowerCase()) {
-            case 'm':
-                return this.toMeters() + " Meters";
-            default:
-                return "Input format is incorrect, please read EXAMPLES below.";
-        }
-    }
-
-
-    exports.Farenheit = Farenheit;
-    exports.Kelvin = Kelvin;
-
-    exports.Longitud = Longitud;
-    exports.Meters = Meters;
-    exports.Inches = Inches;
-
-  //  Conversor['c'] = Celsius.prototype.to
-  //  Conversor['f'] = Farenheit.prototype.to
-  //  Conversor['k'] = Kelvin.prototype.to
-
     exports.convert = function() {
-        var valor = document.getElementById('convert').value,
-            elemento = document.getElementById('converted'),
-            expresion = XRegExp('(?<num>      [-+]?[0-9]+(.[0-9]+)?[ ]*(?:e[+-]?[ ]*[0-9]+)?)[ ]*   # number       \n' +
-                '(?<input>    [fkcmi])[ ]*                                           # inputTemp    \n' +
-                '(?<to>       (?:to)?)[ ]*                                           # to           \n' +
-                '(?<output>   [fkcmi])[ ]*                                           # outputTemp', 'x' + 'i'),
+        var valor = document.getElementById('convert').value;
+        var elemento = document.getElementById('converted');
+        elemento.innerHTML = Medida.convertir(valor);
 
-            valor = XRegExp.exec(valor, expresion);
-
+/*
         if (valor) {
             switch (valor.input.toLowerCase()) {
                 case 'c': // CELSIUS TO X
@@ -99,6 +34,6 @@
             }
         } else
             elemento.innerHTML = "Input format is incorrect, please read EXAMPLES below.";
-
+*/
     };
 })(this);

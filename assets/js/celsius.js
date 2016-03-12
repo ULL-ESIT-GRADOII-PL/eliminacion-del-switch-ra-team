@@ -27,6 +27,8 @@
       }
   }
 
-  exports.Celsius = Celsius
+
+  exports.Celsius.value = this.value;
+  exports.Celsius = Celsius;
 
 })(this);
