@@ -1,7 +1,19 @@
 
 (function(exports) {
-      function Meters(valor) {
-          Longitud.call(this, valor, "Meters");
+      function Meters(valor, type) {
+        converters = {}
+        converters['m'] = function (value) {
+          return value;
+        }
+        converters['i'] = function (value) {
+          return (value / 39.3701);
+        }
+        if (converters[type])
+            valor = converters[type](valor);
+        else {
+            valor = Medida.invalidConversion (type, 'Meters');
+        }
+        Longitud.call(this, valor, "Meters");
       }
 
       Meters.prototype = new Longitud();
@@ -11,13 +23,5 @@
           return (this.valor * 39.3701);
       }
 
-      Meters.prototype.to = function(outputType) {
-          switch (outputType.toLowerCase()) {
-              case 'i':
-                  return this.toInches() + " Inches";
-              default:
-                  return "Input format is incorrect, please read EXAMPLES below.";
-          }
-      }
       exports.Meters = Meters
 })(this);
