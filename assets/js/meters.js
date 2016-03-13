@@ -19,9 +19,5 @@
       Meters.prototype = new Longitud();
       Meters.prototype.constructor = Meters;
 
-      Meters.prototype.toInches = function() {
-          return (this.valor * 39.3701);
-      }
-
       exports.Meters = Meters
 })(this);

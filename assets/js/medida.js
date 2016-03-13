@@ -21,6 +21,9 @@
   converters['m'] = function (value, type) {
     return new Meters (value, type);
   }
+  converters['i'] = function (value, type) {
+    return new Inches (value, type);
+  }
 
 
 
@@ -53,7 +56,7 @@
   }
 
   Medida.prototype.getType = function() {
-      return this.type;
+      return this.tipo;
   }
 
 
@@ -67,7 +70,7 @@
     value = evaluate(value);   // Evaluate value using the regular expression
     if(value.output) {
       var newMeasure = converters[value.output](parseInt(value.num), value.input)
-      var result = newMeasure.valor + " " + newMeasure.tipo;
+      var result = newMeasure.getValue() + " " + newMeasure.getType();
     }
     if (!newMeasure)
       return "This conversion is not supported.. read EXAMPLES below!";
