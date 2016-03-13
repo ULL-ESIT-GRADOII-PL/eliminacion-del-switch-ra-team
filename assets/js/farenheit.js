@@ -1,18 +1,19 @@
 
 (function(exports) {
 
-  converters = {}
-  converters['k'] = function (value) {
-    return (value * 1.8) - 459.67;
-  }
-  converters['c'] = function (value) {
-    return (value * 1.8 + 32);
-  }
-  converters['f'] = function (value) {
-    return value;
-  }
+
 
   function Farenheit(valor, type) {
+    converters = {}
+    converters['k'] = function (value) {
+      return (value * 1.8) - 459.67;
+    }
+    converters['c'] = function (value) {
+      return (value * 1.8 + 32);
+    }
+    converters['f'] = function (value) {
+      return value;
+    }
     if (converters[type])
         valor = converters[type](valor);
     else {
