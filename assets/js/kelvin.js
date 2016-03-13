@@ -9,7 +9,7 @@
         return (value + 273.15);
       }
       converters['f'] = function (value) {
-        return (5 * (this.valor - 32) / 9) + 273.15;
+        return (5 * (value - 32) / 9) + 273.15;
       }
 
       function Kelvin(valor, type) {
