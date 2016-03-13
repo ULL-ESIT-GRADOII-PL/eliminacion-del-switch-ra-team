@@ -4,7 +4,6 @@
       function Kelvin(valor, type) {
         converters = {}
         converters['k'] = function (value) {
-          alert ("Retorna el propio valor");
           return value;
         }
         converters['c'] = function (value) {
