@@ -12,7 +12,7 @@
     return value;
   }
 
-  function Farenheit(valor) {
+  function Farenheit(valor, type) {
     if (converters[type])
         valor = converters[type](valor);
     else {
