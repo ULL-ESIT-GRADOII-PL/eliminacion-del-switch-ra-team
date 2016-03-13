@@ -10,9 +10,10 @@
 
   var converters = {}
   converters['k'] = function (value, type) {
-    //var pepe = new Kelvin (100);
+    //var pepe = new Kelvin (100,'r');
     return new Kelvin (value,type);
-    //return Kelvin.from (value, type);
+    //alert ("retornaremos " + pepe.from (value, type).valor)
+    return Kelvin.fromm (value, type);
   }
   converters['c'] = function (value, type) {
     return Celsius.from (value, type);
@@ -67,9 +68,10 @@
 
   function convertir (value) {
     value = evaluate(value);   // Evaluate value using the regular expression
-    var result = converters[value.output](value.num, value.input).value;
+    if(value.output)
+      var result = converters[value.output](parseInt(value.num), value.input).valor;
     if (!result)
-      return -1;
+      return "This conversion is not supported.. read EXAMPLES below!";
     else
       return result;
   }

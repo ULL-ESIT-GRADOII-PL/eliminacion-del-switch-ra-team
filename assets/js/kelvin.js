@@ -1,9 +1,6 @@
 
 (function(exports) {
-      function Kelvin(valor) {
-          Temperatura.call(this, valor, "Kelvin");
 
-      "use strict";
       converters = {}
       converters['c'] = function (value) {
         return (value + 273.15);
@@ -13,7 +10,9 @@
       }
 
       function Kelvin(valor, type) {
-          Temperatura.call(this, converters[type](valor), 'k');
+          if (type != 'k')
+              valor = converters[type](valor);
+          Temperatura.call(this, valor, 'k');
       }
       // There we set the inheritance
       Kelvin.prototype = new Temperatura();
@@ -36,17 +35,22 @@
           }
       }
 */
-      function from (value, inputType) {
-        return new Kelvin (converters[inputType](value));
-      }
+  //    Kelvin.prototype.from = function (value, inputType) {
+  //      return new Kelvin (converters[inputType](value));
+  //    }
+
+    //  function fromm (value, inputType) {
+    //    return new Kelvin (converters[inputType](value));
+  //    }
 
 
-
+/*
       exports.Kelvin.from = function (value, inputType) {
         return new Kelvin (converters[inputType](value));
       };
-
-      exports.Kelvin.value = this.value;
+*/
+    //  exports.Kelvin.value = this.value;
+      //exports.Kelvin.fromm = fromm;
       exports.Kelvin = Kelvin;
 
 })(this);
