@@ -2,6 +2,9 @@
 (function(exports) {
 
       converters = {}
+      converters['k'] = function (value) {
+        return value;
+      }
       converters['c'] = function (value) {
         return (value + 273.15);
       }
@@ -10,8 +13,11 @@
       }
 
       function Kelvin(valor, type) {
-          if (type != 'k')
+          if (converters[type])
               valor = converters[type](valor);
+          else {
+              valor = "Invalid conversion: unknown how to convert from '" + type + "' to Kelvin.. See Examples below!"
+          }
           Temperatura.call(this, valor, 'k');
       }
       // There we set the inheritance
@@ -24,33 +30,7 @@
           return ((this.valor * 1.8) - 459.67);
       }
 
-/*      Kelvin.prototype.to = function(outputType) {
-          switch (outputType.toLowerCase()) {
-              case 'c':
-                  return this.toCelsius() + " Celsius";
-              case 'f':
-                  return this.toFarenheit() + " Farenheit";
-              default:
-                  return "Input format is incorrect, please read EXAMPLES below.";
-          }
-      }
-*/
-  //    Kelvin.prototype.from = function (value, inputType) {
-  //      return new Kelvin (converters[inputType](value));
-  //    }
 
-    //  function fromm (value, inputType) {
-    //    return new Kelvin (converters[inputType](value));
-  //    }
-
-
-/*
-      exports.Kelvin.from = function (value, inputType) {
-        return new Kelvin (converters[inputType](value));
-      };
-*/
-    //  exports.Kelvin.value = this.value;
-      //exports.Kelvin.fromm = fromm;
       exports.Kelvin = Kelvin;
 
 })(this);
