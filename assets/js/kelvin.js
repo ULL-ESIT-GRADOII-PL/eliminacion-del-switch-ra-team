@@ -9,16 +9,16 @@
         return (value + 273.15);
       }
       converters['f'] = function (value) {
-        return ((value * 1.8) - 459.67);
+        return (5 * (this.valor - 32) / 9) + 273.15;
       }
 
       function Kelvin(valor, type) {
           if (converters[type])
               valor = converters[type](valor);
           else {
-              valor = "Invalid conversion: unknown how to convert from '" + type + "' to Kelvin.. See Examples below!"
+              valor = Medida.invalidConversion (type, 'Kelvin');
           }
-          Temperatura.call(this, valor, 'k');
+          Temperatura.call(this, valor, 'Kelvin');
       }
       // There we set the inheritance
       Kelvin.prototype = new Temperatura();
@@ -29,7 +29,6 @@
       Kelvin.prototype.toFarenheit = function() {
           return ((this.valor * 1.8) - 459.67);
       }
-
 
       exports.Kelvin = Kelvin;
 

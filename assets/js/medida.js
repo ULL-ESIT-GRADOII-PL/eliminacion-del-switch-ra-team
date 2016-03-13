@@ -68,16 +68,23 @@
 
   function convertir (value) {
     value = evaluate(value);   // Evaluate value using the regular expression
-    if(value.output)
-      var result = converters[value.output](parseInt(value.num), value.input).valor;
-    if (!result)
+    if(value.output) {
+      var newMeasure = converters[value.output](parseInt(value.num), value.input)
+      var result = newMeasure.valor + " " + newMeasure.tipo;
+    }
+    if (!newMeasure)
       return "This conversion is not supported.. read EXAMPLES below!";
     else
       return result;
   }
 
+  function invalidConversion (from, to) {
+    return "Invalid conversion: unknown how to convert from '" + from + "' to '" + to + "'.. See Examples below!"
+  }
+
   exports.Medida = Medida;
   exports.Medida.convertir = convertir;
+  exports.Medida.invalidConversion = invalidConversion;
 
 
 
