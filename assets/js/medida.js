@@ -29,8 +29,6 @@
 
 
   function Medida(val, tipo) {
-      /* tipo es opcional. Debería admitir  new Medida("45.2 Km") */
-
       if (val && !tipo) {
         var regexp = /([+-]?\d+(?:\.\d+)?(?:e[+-]?\d+)?)\s*([cfkmi])/i;
 
@@ -45,8 +43,7 @@
           this.valor = val;
           this.tipo = tipo;
       }
-      /* tipo es opcional. Debería admitir  new Medida("45.2 Km") */
-      /* ademas de new Medida(45.2, "Km") */
+      /* It accepts one parameter, like:  new Medida("45.2 Km") */
   }
 
   Medida.prototype.constructor = Medida;
