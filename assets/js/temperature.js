@@ -1,10 +1,9 @@
-
 (function(exports) {
     "use strict";
 
-     function Temperatura(valor, tipo) {
+    function Temperatura(valor, tipo) {
         Medida.call(this, valor, tipo);
-     }
+    }
 
     // There we set the inheritance
     Temperatura.prototype = new Medida();
