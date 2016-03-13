@@ -10,19 +10,16 @@
 
   var converters = {}
   converters['k'] = function (value, type) {
-    //var pepe = new Kelvin (100,'r');
     return new Kelvin (value,type);
-    //alert ("retornaremos " + pepe.from (value, type).valor)
-    return Kelvin.fromm (value, type);
   }
   converters['c'] = function (value, type) {
-    return Celsius.from (value, type);
+    return new Celsius (value, type);
   }
   converters['f'] = function (value, type) {
-    return Farenheit.from (value, type);
+    return new Farenheit (value, type);
   }
   converters['m'] = function (value, type) {
-    return Meters.from (value, type);
+    return new Meters (value, type);
   }
 
 
