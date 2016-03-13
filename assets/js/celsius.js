@@ -1,5 +1,16 @@
 (function(exports) {
 
+  converters = {}
+  converters['k'] = function (value) {
+    return value - 273.15;
+  }
+  converters['c'] = function (value) {
+    return value;
+  }
+  converters['f'] = function (value) {
+    return (value - 32) * 5 / 9;
+  }
+
   function Celsius(valor, type) {
     if (converters[type])
         valor = converters[type](valor);
